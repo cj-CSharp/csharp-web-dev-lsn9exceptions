@@ -21,7 +21,7 @@ namespace csharp_web_dev_lsn9exceptions
         {
             if(fileName == null || fileName == "")
             {
-                throw new ArgumentNullException("File name is null.");
+                throw new ArgumentNullException("fileName","File name is null.");
             } 
             else
             {
