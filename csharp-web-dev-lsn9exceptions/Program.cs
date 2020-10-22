@@ -7,18 +7,47 @@ namespace csharp_web_dev_lsn9exceptions
     {
         static double Divide(double x, double y)
         {
-            // Write your code here!
+            if(y == 0.0)
+            {
+                throw new ArgumentOutOfRangeException("y", "Cannot divide by zero!");
+            }
+            else
+            {
+                return x / y;
+            }
         }
 
         static int CheckFileExtension(string fileName)
         {
-            // Write your code here!
+            if(fileName == null || fileName == "")
+            {
+                throw new ArgumentNullException("File name is null.");
+            } 
+            else
+            {
+                if(fileName.Substring(fileName.Length-3,3) == ".cs")
+                {
+                    return 1;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
         }
 
 
         static void Main(string[] args)
         {
             // Test out your Divide() function here!
+            try
+            {
+                Divide(1, 0);
+            } 
+            catch(ArgumentOutOfRangeException e)
+            {
+                Console.WriteLine(e.Message);
+            }
 
             // Test out your CheckFileExtension() function here!
             Dictionary<string, string> students = new Dictionary<string, string>();
@@ -26,6 +55,20 @@ namespace csharp_web_dev_lsn9exceptions
             students.Add("Brad", "");
             students.Add("Elizabeth", "MyCode.cs");
             students.Add("Stefanie", "CoolProgram.cs");
+
+            foreach(string student in students.Keys)
+            {
+                try
+                {
+                    Console.WriteLine(student);
+                    Console.WriteLine(CheckFileExtension(students[student]));
+                }
+                catch (ArgumentNullException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+            }
+
 
 
         }
